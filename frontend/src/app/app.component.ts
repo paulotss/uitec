@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <main>
       <a [routerLink]="['/']">
         <header class="brand-name">
-          <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+          Logo
         </header>
       </a>
       <section class="content">
