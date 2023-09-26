@@ -27,3 +27,5 @@ Navegue para a pasta frontend:
 Você pode inicializar a aplicação com o comando:
 
 `ng serve`
+
+O acesso é pelo endereço: http://localhost:4200.
