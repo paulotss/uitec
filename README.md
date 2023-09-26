@@ -8,13 +8,19 @@ Desenvolver um aplicativo de CRUD (Create, Read, Update, Delete) de produtos, ut
 
 #### Backend
 
-Navegue para a pasta backend:
+Navegue para a pasta backend e instale as dependências:
 
 `cd backend`
 
+`composer update`
+
 Você pode inicializar a aplicação utilizando o comando sail:
 
-`sail up -d`
+`./vendor/bin/sail up -d`
+
+Para migrar e popular as tabelas do banco de dados:
+
+`./vendor/bin/sail php artisan migrate:refresh --seed`
 
 O acesso é pelo endereço: http://localhost:3001.
 
@@ -23,6 +29,10 @@ O acesso é pelo endereço: http://localhost:3001.
 Navegue para a pasta frontend:
 
 `cd frontend`
+
+Para instalar as dependências:
+
+`npm install`
 
 Você pode inicializar a aplicação com o comando:
 
