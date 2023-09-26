@@ -32,11 +32,7 @@ export class HomeComponent {
   products: Product[] = []
 
   constructor(private productService: ProductService) {
-    this.getAllProducts();
-  }
-
-  getAllProducts() {
-    this.productService.getAllProducts().subscribe(products => this.products = products.data);
-    console.log(this.products);
+    this.productService.getAllProducts()
+      .subscribe(products => this.products = products.data);
   }
 }
