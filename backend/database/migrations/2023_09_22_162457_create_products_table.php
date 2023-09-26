@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', $precision = 8, $scale = 2);
-            $table->date('expiration');
+            $table->date('expiration')->nullable();
             $table->integer('amount');
             $table->boolean('perishable');
             $table->timestamps();
