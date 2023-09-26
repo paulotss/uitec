@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '../category';
 import { ProductService } from '../product.service';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ProductPost } from '../product';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
@@ -96,9 +97,9 @@ import { ActivatedRoute } from '@angular/router';
 
         <button
           type="submit"
-          class="p-2 bg-gray-600 rounded"
+          class="p-2 bg-blue-300 rounded"
         >
-          Cadastrar
+          Atualizar
         </button>
       </form>
     </section>
@@ -108,6 +109,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditProductComponent {
   categories: Category[] = [];
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
 
   applyForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -145,11 +147,6 @@ export class EditProductComponent {
   }
 
   submitApplication() {
-    // this.housingService.submitApplication(
-    //   this.applyForm.value.firstName ?? '',
-    //   this.applyForm.value.lastName ?? '',
-    //   this.applyForm.value.email ?? ''
-    // );
     if(this.applyForm.valid) {
       const product: ProductPost = {
         name: this.name?.value,
@@ -159,9 +156,11 @@ export class EditProductComponent {
         amount: Number(this.amount?.value),
         perishable: this.perishable?.value
       }
-      this.productService.postNewProduct(product)
-        .subscribe(result => console.log(result));
-      console.log(this.applyForm.value);
+      this.productService.editOneProduct(product, Number(this.route.snapshot.params['id']))
+        .subscribe(result => {
+          console.log(result);
+          this.router.navigate(['']);
+        });
     } else {
       this.applyForm.markAllAsTouched();
     }

@@ -30,7 +30,11 @@ export class ProductService {
     return this.http.get<{data: Product}>(`${this.defaultUrl}/api/product/${id}`);
   }
 
-  editOneProduct(product: ProductPost) {
-    return this.http.put(`${this.defaultUrl}/api/product`, product);
+  editOneProduct(product: ProductPost, id: number) {
+    return this.http.put(`${this.defaultUrl}/api/product/${id}`, product);
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(`${this.defaultUrl}/api/product/${id}`);
   }
 }
