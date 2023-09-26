@@ -25,4 +25,12 @@ export class ProductService {
   postNewProduct(product: ProductPost) {
     return this.http.post(`${this.defaultUrl}/api/product`, product);
   }
+
+  getOneProduct(id: number): Observable<{data: Product}> {
+    return this.http.get<{data: Product}>(`${this.defaultUrl}/api/product/${id}`);
+  }
+
+  editOneProduct(product: ProductPost) {
+    return this.http.put(`${this.defaultUrl}/api/product`, product);
+  }
 }
